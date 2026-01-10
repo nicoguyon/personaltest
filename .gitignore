@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+
+# Environment variables
+.env
+*.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Application data
+summaries/
+processed_videos.json
+
+# Docker
+.docker/
+
+# OS
+.DS_Store
+Thumbs.db

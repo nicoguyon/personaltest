@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  youtube-summarizer:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - YOUTUBE_API_KEY=${YOUTUBE_API_KEY}
+      - YOUTUBE_PLAYLIST_ID=${YOUTUBE_PLAYLIST_ID}
+      - CHECK_INTERVAL_MINUTES=${CHECK_INTERVAL_MINUTES:-5}
+    volumes:
+      # Persister les résumés
+      - ./summaries:/app/summaries
+      - ./processed_videos.json:/app/processed_videos.json
+    restart: unless-stopped
