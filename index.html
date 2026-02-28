@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cantine Populaire — Cuisine familiale 100% fait maison à Clichy. Créée par Émilie & Augustin, frère et sœur passionnés. Produits frais, de saison, locaux.">
+    <meta name="keywords" content="restaurant, cantine, Clichy, fait maison, cuisine familiale, traiteur, Émilie, Augustin">
+    <meta property="og:title" content="Cantine Populaire — Cuisine Familiale Fait Maison">
+    <meta property="og:description" content="Cantine de quartier à Clichy. Cuisine familiale 100% fait maison avec amour depuis 2018.">
+    <meta property="og:type" content="website">
+    <title>Cantine Populaire — Cuisine Familiale Fait Maison | Clichy</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           CSS RESET & VARIABLES
+           ============================================ */
+        :root {
+            --color-cream: #FDF6EE;
+            --color-cream-dark: #F5EDE3;
+            --color-terracotta: #C4704B;
+            --color-terracotta-dark: #A85A38;
+            --color-sage: #7A8B6F;
+            --color-sage-light: #96A88A;
+            --color-charcoal: #2C2C2C;
+            --color-charcoal-light: #4A4A4A;
+            --color-gold: #D4A574;
+            --color-gold-light: #E8C9A4;
+            --color-white: #FFFFFF;
+            --color-warm-gray: #8B8178;
+
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-accent: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+
+            --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-charcoal);
+            background-color: var(--color-cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s var(--ease-smooth);
+        }
+
+        ul { list-style: none; }
+
+        /* ============================================
+           LOADING SCREEN
+           ============================================ */
+        .loader {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: var(--color-cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.8s var(--ease-smooth), visibility 0.8s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-text {
+            font-family: var(--font-accent);
+            font-size: 2rem;
+            color: var(--color-terracotta);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            animation: loaderPulse 1.5s ease-in-out infinite;
+        }
+
+        .loader-line {
+            width: 60px;
+            height: 2px;
+            background: var(--color-gold);
+            margin-top: 1.5rem;
+            animation: loaderExpand 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes loaderExpand {
+            0%, 100% { width: 60px; }
+            50% { width: 120px; }
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.5s var(--ease-smooth);
+        }
+
+        .nav.scrolled {
+            background: rgba(253, 246, 238, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1rem 3rem;
+            box-shadow: 0 2px 40px rgba(0,0,0,0.06);
+        }
+
+        .nav-logo {
+            font-family: var(--font-accent);
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-white);
+            transition: color 0.5s var(--ease-smooth);
+        }
+
+        .nav.scrolled .nav-logo {
+            color: var(--color-charcoal);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.3s var(--ease-smooth);
+        }
+
+        .nav.scrolled .nav-links a {
+            color: var(--color-charcoal-light);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--color-terracotta);
+            transition: width 0.4s var(--ease-smooth);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-white);
+        }
+
+        .nav.scrolled .nav-links a:hover {
+            color: var(--color-terracotta);
+        }
+
+        /* Mobile menu */
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-burger span {
+            width: 28px;
+            height: 2px;
+            background: var(--color-white);
+            transition: all 0.4s var(--ease-smooth);
+        }
+
+        .nav.scrolled .nav-burger span {
+            background: var(--color-charcoal);
+        }
+
+        .nav-burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .nav-burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg,
+                    rgba(44, 44, 44, 0.7) 0%,
+                    rgba(196, 112, 75, 0.4) 50%,
+                    rgba(44, 44, 44, 0.6) 100%),
+                linear-gradient(45deg,
+                    #3a2a1a 0%, #5c3d2e 25%, #7a5a40 50%, #4a3020 75%, #2c1a10 100%);
+            background-size: cover;
+            animation: heroBgShift 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroBgShift {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        /* Decorative grain texture */
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 2rem;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-gold-light);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s var(--ease-smooth) 0.5s forwards;
+        }
+
+        .hero-badge::before,
+        .hero-badge::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--color-gold);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 400;
+            line-height: 1.05;
+            color: var(--color-white);
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s var(--ease-smooth) 0.7s forwards;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--color-gold-light);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-accent);
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            font-weight: 300;
+            color: rgba(255,255,255,0.75);
+            margin-top: 1.5rem;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s var(--ease-smooth) 1s forwards;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s var(--ease-smooth) 1.3s forwards;
+        }
+
+        .btn {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--color-terracotta);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-terracotta-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(196, 112, 75, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-white);
+            border: 1.5px solid rgba(255,255,255,0.4);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-white);
+            color: var(--color-charcoal);
+            border-color: var(--color-white);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-smooth) 2s forwards;
+        }
+
+        .hero-scroll span {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            writing-mode: vertical-lr;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--color-gold), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.5); opacity: 0.3; }
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           SECTION COMMON
+           ============================================ */
+        section {
+            padding: 7rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-terracotta);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--color-charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--color-terracotta);
+        }
+
+        .section-divider {
+            width: 50px;
+            height: 1.5px;
+            background: var(--color-gold);
+            margin-bottom: 2rem;
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+        .reveal-delay-4 { transition-delay: 0.6s; }
+
+        /* ============================================
+           MARQUEE BANNER
+           ============================================ */
+        .marquee {
+            background: var(--color-charcoal);
+            padding: 1.2rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 3rem;
+            animation: marquee 30s linear infinite;
+            width: max-content;
+        }
+
+        .marquee-item {
+            font-family: var(--font-accent);
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-gold-light);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .marquee-item::after {
+            content: '✦';
+            font-size: 0.5rem;
+            color: var(--color-terracotta);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ============================================
+           ABOUT / HISTOIRE
+           ============================================ */
+        .about {
+            background: var(--color-cream);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+        }
+
+        .about-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(135deg,
+                    var(--color-terracotta) 0%,
+                    var(--color-gold) 50%,
+                    var(--color-sage) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .about-image-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .about-image-text {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: var(--color-white);
+        }
+
+        .about-image-text .emoji {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .about-image-text span {
+            font-family: var(--font-accent);
+            font-size: 1.2rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .about-year {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-family: var(--font-display);
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--color-cream-dark);
+            line-height: 1;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--color-charcoal-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+
+        .about-text .highlight {
+            font-family: var(--font-accent);
+            font-size: 1.5rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--color-terracotta);
+            line-height: 1.5;
+            border-left: 3px solid var(--color-gold);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .about-signature {
+            font-family: var(--font-accent);
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--color-terracotta);
+            margin-top: 2rem;
+        }
+
+        /* ============================================
+           VALEURS / PHILOSOPHY
+           ============================================ */
+        .values {
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .values::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(196, 112, 75, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .values .section-title {
+            color: var(--color-white);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .value-card {
+            padding: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.5s var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-terracotta), var(--color-gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s var(--ease-smooth);
+        }
+
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .value-card:hover {
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .value-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           MENU SECTION
+           ============================================ */
+        .menu-section {
+            background: var(--color-cream);
+            position: relative;
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .menu-header .section-label,
+        .menu-header .section-divider {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .menu-header .section-title {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .menu-price-banner {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            padding: 1rem 2.5rem;
+            margin-top: 1.5rem;
+            font-family: var(--font-accent);
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .menu-price-banner strong {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-gold-light);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .menu-card {
+            background: var(--color-white);
+            padding: 2.5rem;
+            transition: all 0.4s var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-terracotta), var(--color-gold), var(--color-sage));
+            transform: scaleX(0);
+            transition: transform 0.5s var(--ease-smooth);
+        }
+
+        .menu-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+        }
+
+        .menu-card-tag {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-terracotta);
+            margin-bottom: 0.75rem;
+        }
+
+        .menu-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .menu-card p {
+            font-size: 0.95rem;
+            color: var(--color-charcoal-light);
+            line-height: 1.7;
+        }
+
+        .menu-card-icons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .menu-icon {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.7rem;
+            border: 1px solid var(--color-sage-light);
+            color: var(--color-sage);
+        }
+
+        .menu-note {
+            text-align: center;
+            margin-top: 3rem;
+            font-family: var(--font-accent);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--color-warm-gray);
+        }
+
+        /* ============================================
+           GALLERY
+           ============================================ */
+        .gallery {
+            background: var(--color-white);
+            padding-bottom: 5rem;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .gallery-header .section-label,
+        .gallery-header .section-divider {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 280px);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item-bg {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s var(--ease-smooth);
+        }
+
+        .gallery-item:hover .gallery-item-bg {
+            transform: scale(1.08);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(44,44,44,0.7) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s var(--ease-smooth);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-overlay span {
+            font-family: var(--font-accent);
+            font-size: 1.1rem;
+            color: var(--color-white);
+            letter-spacing: 0.05em;
+        }
+
+        /* Color-based gallery placeholders */
+        .gallery-color-1 { background: linear-gradient(135deg, #D4A574, #C4704B); }
+        .gallery-color-2 { background: linear-gradient(135deg, #7A8B6F, #96A88A); }
+        .gallery-color-3 { background: linear-gradient(135deg, #C4704B, #A85A38); }
+        .gallery-color-4 { background: linear-gradient(135deg, #E8C9A4, #D4A574); }
+        .gallery-color-5 { background: linear-gradient(135deg, #96A88A, #7A8B6F); }
+        .gallery-color-6 { background: linear-gradient(135deg, #A85A38, #7A5A40); }
+
+        .gallery-item-emoji {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0.6;
+            transition: all 0.4s var(--ease-smooth);
+        }
+
+        .gallery-item:nth-child(1) .gallery-item-emoji {
+            font-size: 5rem;
+        }
+
+        .gallery-item:hover .gallery-item-emoji {
+            opacity: 0.9;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        /* ============================================
+           TRAITEUR / EVENTS
+           ============================================ */
+        .events {
+            background: var(--color-cream-dark);
+            position: relative;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .events-content {
+            order: 2;
+        }
+
+        .events-visual {
+            order: 1;
+            position: relative;
+        }
+
+        .events-visual-box {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, var(--color-charcoal-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .events-visual-box::before {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+        }
+
+        .events-visual-box .visual-text {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .events-visual-box .visual-text .big-emoji {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .events-visual-box .visual-text p {
+            font-family: var(--font-accent);
+            font-size: 1.3rem;
+            color: var(--color-gold-light);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .events-list {
+            margin-top: 2.5rem;
+        }
+
+        .events-list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .events-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .events-list-num {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-terracotta);
+            line-height: 1;
+            min-width: 2.5rem;
+        }
+
+        .events-list-item h4 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .events-list-item p {
+            font-size: 0.9rem;
+            color: var(--color-charcoal-light);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           TESTIMONIALS
+           ============================================ */
+        .testimonials {
+            background: var(--color-white);
+            overflow: hidden;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .testimonials-header .section-label,
+        .testimonials-header .section-divider {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .testimonials-slider {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--color-cream);
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.4s var(--ease-smooth);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+        }
+
+        .testimonial-stars {
+            color: var(--color-gold);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-card blockquote {
+            font-family: var(--font-accent);
+            font-size: 1.15rem;
+            font-style: italic;
+            line-height: 1.7;
+            color: var(--color-charcoal-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-terracotta);
+        }
+
+        .testimonial-source {
+            font-size: 0.75rem;
+            color: var(--color-warm-gray);
+            margin-top: 0.25rem;
+        }
+
+        /* ============================================
+           INSTAGRAM SECTION
+           ============================================ */
+        .instagram {
+            background: var(--color-charcoal);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .instagram .section-label {
+            color: var(--color-gold-light);
+        }
+
+        .instagram .section-title {
+            color: var(--color-white);
+        }
+
+        .instagram .section-divider {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .instagram-handle {
+            font-family: var(--font-accent);
+            font-size: 1.3rem;
+            color: var(--color-gold-light);
+            margin-bottom: 2.5rem;
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .instagram-handle:hover {
+            background: rgba(212, 165, 116, 0.1);
+            border-color: var(--color-gold);
+        }
+
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 4px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .instagram-item {
+            aspect-ratio: 1;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .instagram-item-bg {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s var(--ease-smooth);
+        }
+
+        .instagram-item:hover .instagram-item-bg {
+            transform: scale(1.1);
+        }
+
+        .ig-color-1 { background: linear-gradient(135deg, #e8c9a4, #c4704b); }
+        .ig-color-2 { background: linear-gradient(135deg, #96a88a, #7a8b6f); }
+        .ig-color-3 { background: linear-gradient(135deg, #d4a574, #a85a38); }
+        .ig-color-4 { background: linear-gradient(135deg, #c4704b, #7a5a40); }
+        .ig-color-5 { background: linear-gradient(135deg, #7a8b6f, #4a6040); }
+        .ig-color-6 { background: linear-gradient(135deg, #a85a38, #d4a574); }
+
+        /* ============================================
+           CONTACT / INFO
+           ============================================ */
+        .contact {
+            background: var(--color-cream);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info h3:first-child {
+            margin-top: 0;
+        }
+
+        .contact-info p {
+            font-size: 1rem;
+            color: var(--color-charcoal-light);
+            line-height: 1.8;
+        }
+
+        .contact-info a {
+            color: var(--color-terracotta);
+        }
+
+        .contact-info a:hover {
+            color: var(--color-terracotta-dark);
+        }
+
+        .contact-hours {
+            margin-top: 2rem;
+        }
+
+        .contact-hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            font-size: 0.95rem;
+        }
+
+        .contact-hours-row .day {
+            font-weight: 500;
+        }
+
+        .contact-hours-row .time {
+            color: var(--color-charcoal-light);
+        }
+
+        .contact-map {
+            position: relative;
+            aspect-ratio: 1;
+            background: var(--color-charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .contact-map-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .contact-map-content .pin {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+            animation: pinBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes pinBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .contact-map-content p {
+            font-family: var(--font-accent);
+            font-size: 1.1rem;
+            color: var(--color-gold-light);
+            letter-spacing: 0.05em;
+        }
+
+        .contact-map-content .address {
+            margin-top: 0.5rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .contact-map-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold-light);
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .contact-map-btn:hover {
+            background: var(--color-gold);
+            color: var(--color-charcoal);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-brand .footer-logo {
+            font-family: var(--font-accent);
+            font-size: 1.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+            max-width: 350px;
+        }
+
+        .footer h4 {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-gold-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            display: block;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            padding: 0.4rem 0;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-white);
+            transform: translateX(5px);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .footer-social a {
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .footer-social a:hover {
+            background: var(--color-terracotta);
+            border-color: var(--color-terracotta);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .footer-bottom a {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .footer-bottom a:hover {
+            color: var(--color-white);
+        }
+
+        /* ============================================
+           CERTIFICATIONS BADGE
+           ============================================ */
+        .badge-fait-maison {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: var(--color-sage);
+            color: var(--color-white);
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(2, 220px);
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1.2rem 1.5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                inset: 0;
+                background: rgba(44, 44, 44, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.4s var(--ease-smooth);
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                color: var(--color-white) !important;
+            }
+
+            .nav-burger {
+                display: flex;
+            }
+
+            section {
+                padding: 5rem 1.5rem;
+            }
+
+            .about-grid,
+            .events-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .events-visual { order: 1; }
+            .events-content { order: 2; }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 180px);
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+            }
+
+            .testimonials-slider {
+                grid-template-columns: 1fr;
+            }
+
+            .instagram-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 150px);
+            }
+
+            .instagram-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .menu-price-banner {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="loader-text">Cantine Populaire</div>
+        <div class="loader-line"></div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">Cantine Populaire</a>
+        <div class="nav-links" id="navLinks">
+            <a href="#histoire">Notre Histoire</a>
+            <a href="#carte">La Carte</a>
+            <a href="#galerie">Galerie</a>
+            <a href="#traiteur">Traiteur</a>
+            <a href="#avis">Avis</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-burger" id="navBurger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Depuis 2018 &middot; Clichy</div>
+            <h1 class="hero-title">Cuisine Familiale<br><em>Fait Maison</em></h1>
+            <p class="hero-subtitle">Émilie &amp; Augustin vous accueillent avec des plats 100% maison,<br>des produits frais, de saison et locaux, cuisinés avec amour.</p>
+            <div class="hero-cta">
+                <a href="#carte" class="btn btn-primary">Découvrir la Carte</a>
+                <a href="#contact" class="btn btn-outline">Nous Trouver</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Découvrir</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span class="marquee-item">100% Fait Maison</span>
+            <span class="marquee-item">Produits Frais &amp; Locaux</span>
+            <span class="marquee-item">Cuisine de Saison</span>
+            <span class="marquee-item">Végétarien</span>
+            <span class="marquee-item">Vegan</span>
+            <span class="marquee-item">Sans Gluten</span>
+            <span class="marquee-item">Sans Lactose</span>
+            <span class="marquee-item">Traiteur &amp; Événements</span>
+            <span class="marquee-item">100% Fait Maison</span>
+            <span class="marquee-item">Produits Frais &amp; Locaux</span>
+            <span class="marquee-item">Cuisine de Saison</span>
+            <span class="marquee-item">Végétarien</span>
+            <span class="marquee-item">Vegan</span>
+            <span class="marquee-item">Sans Gluten</span>
+            <span class="marquee-item">Sans Lactose</span>
+            <span class="marquee-item">Traiteur &amp; Événements</span>
+        </div>
+    </div>
+
+    <!-- ABOUT / HISTOIRE -->
+    <section class="about" id="histoire">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <div class="about-image-placeholder">
+                        <div class="about-image-text">
+                            <span class="emoji">👩🏻‍🍳👨🏻‍🍳</span>
+                            <span>Émilie &amp; Augustin</span>
+                        </div>
+                    </div>
+                    <div class="about-year">2018</div>
+                </div>
+                <div class="about-text">
+                    <div class="section-label reveal">Notre Histoire</div>
+                    <div class="section-divider reveal reveal-delay-1"></div>
+                    <h2 class="section-title reveal reveal-delay-1">Un frère, une sœur,<br>une <em>passion commune</em></h2>
+                    <p class="reveal reveal-delay-2">En 2018, Émilie et Augustin ont ouvert les portes de la <strong>Cantine Populaire</strong> à Clichy avec une seule envie : transmettre leur amour de la cuisine familiale, saine et gourmande.</p>
+                    <p class="reveal reveal-delay-2">Ici, pas de compromis. Chaque plat est cuisiné sur place, avec des produits ultra-frais, de saison, et issus pour la plupart de producteurs locaux. Une cuisine de cœur, généreuse et authentique.</p>
+                    <div class="highlight reveal reveal-delay-3">
+                        « Chez nous, on cuisine comme à la maison. Avec des bons produits, du temps et beaucoup d'amour. »
+                    </div>
+                    <div class="about-signature reveal reveal-delay-3">— Émilie &amp; Augustin</div>
+                    <div class="badge-fait-maison reveal reveal-delay-4">
+                        ✓ Certifié "Fait Maison"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALEURS -->
+    <section class="values" id="valeurs">
+        <div class="container">
+            <div class="section-label reveal">Notre Philosophie</div>
+            <div class="section-divider reveal"></div>
+            <h2 class="section-title reveal">Ce qui nous <em>anime</em> chaque jour</h2>
+            <div class="values-grid">
+                <div class="value-card reveal reveal-delay-1">
+                    <span class="value-icon">🌿</span>
+                    <h3>Frais &amp; Local</h3>
+                    <p>Des produits ultra-frais, de saison, issus pour la plupart de producteurs locaux et de fermes partenaires. Nous privilégions les circuits courts.</p>
+                </div>
+                <div class="value-card reveal reveal-delay-2">
+                    <span class="value-icon">🍳</span>
+                    <h3>100% Fait Maison</h3>
+                    <p>De l'entrée au dessert, chaque plat est préparé sur place avec soin. Pas de surgelés, pas d'industriel, que du vrai. Label "Fait Maison" certifié.</p>
+                </div>
+                <div class="value-card reveal reveal-delay-3">
+                    <span class="value-icon">❤️</span>
+                    <h3>Cuisine d'Amour</h3>
+                    <p>Une cuisine familiale transmise avec passion. Des recettes généreuses qui réchauffent le cœur, comme à la maison, en mieux.</p>
+                </div>
+                <div class="value-card reveal reveal-delay-1">
+                    <span class="value-icon">🥗</span>
+                    <h3>Pour Tous</h3>
+                    <p>Options végétariennes, vegan, sans gluten et sans lactose disponibles chaque jour. Tout le monde trouve son bonheur à notre table.</p>
+                </div>
+                <div class="value-card reveal reveal-delay-2">
+                    <span class="value-icon">🔄</span>
+                    <h3>Menu du Jour</h3>
+                    <p>Notre carte change chaque jour au gré des saisons et des arrivages. Une raison de plus de revenir : chaque visite est une nouvelle surprise.</p>
+                </div>
+                <div class="value-card reveal reveal-delay-3">
+                    <span class="value-icon">🤝</span>
+                    <h3>Esprit Cantine</h3>
+                    <p>Un lieu chaleureux, convivial et accessible. Des prix justes pour une cuisine d'exception. La qualité d'un gastro, l'âme d'une cantine de quartier.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu-section" id="carte">
+        <div class="container">
+            <div class="menu-header">
+                <div class="section-label reveal">La Carte</div>
+                <div class="section-divider reveal"></div>
+                <h2 class="section-title reveal">Un menu qui change <em>chaque jour</em></h2>
+                <div class="menu-price-banner reveal reveal-delay-1">
+                    Menu Complet &mdash; Entrée + Plat + Dessert
+                    <strong>15€</strong>
+                </div>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card reveal">
+                    <div class="menu-card-tag">Entrée du jour</div>
+                    <h3>Salade de Boulgour Citronné</h3>
+                    <p>Petits pois frais, roquette, cœurs d'artichaut, vinaigrette au citron. Des ingrédients frais, un assaisonnement juste et précis.</p>
+                    <div class="menu-card-icons">
+                        <span class="menu-icon">Végétarien</span>
+                        <span class="menu-icon">Vegan</span>
+                    </div>
+                </div>
+                <div class="menu-card reveal reveal-delay-1">
+                    <div class="menu-card-tag">Plat du jour</div>
+                    <h3>Tourte à la Viande Maison</h3>
+                    <p>Notre tourte généreuse, pâte dorée et croustillante, garnie d'une farce savoureuse. Un vrai plat réconfortant comme on les aime.</p>
+                    <div class="menu-card-icons">
+                        <span class="menu-icon">Fait Maison</span>
+                    </div>
+                </div>
+                <div class="menu-card reveal reveal-delay-2">
+                    <div class="menu-card-tag">Alternative végé</div>
+                    <h3>Lasagnes aux Légumes de Saison</h3>
+                    <p>Couches de pâtes fraîches, légumes du marché rôtis, béchamel onctueuse. Un classique revisité avec les produits du jour.</p>
+                    <div class="menu-card-icons">
+                        <span class="menu-icon">Végétarien</span>
+                        <span class="menu-icon">Sans Gluten*</span>
+                    </div>
+                </div>
+                <div class="menu-card reveal reveal-delay-3">
+                    <div class="menu-card-tag">Dessert du jour</div>
+                    <h3>Tarte Normande Pomme-Vanille</h3>
+                    <p>Pommes fondantes, crème à la vanille de Madagascar, pâte sablée maison. Une douceur qui enchante les papilles à chaque bouchée.</p>
+                    <div class="menu-card-icons">
+                        <span class="menu-icon">Fait Maison</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="menu-note reveal">Le menu change tous les jours selon les arrivages et les saisons.<br>Demandez nos options sans gluten et sans lactose.</p>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="galerie">
+        <div class="container">
+            <div class="gallery-header">
+                <div class="section-label reveal">Galerie</div>
+                <div class="section-divider reveal"></div>
+                <h2 class="section-title reveal">L'univers de la <em>Cantine</em></h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal">
+                    <div class="gallery-item-bg gallery-color-1"></div>
+                    <span class="gallery-item-emoji">🍽️</span>
+                    <div class="gallery-item-overlay">
+                        <span>Le restaurant</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-1">
+                    <div class="gallery-item-bg gallery-color-2"></div>
+                    <span class="gallery-item-emoji">🥗</span>
+                    <div class="gallery-item-overlay">
+                        <span>Nos salades</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-2">
+                    <div class="gallery-item-bg gallery-color-3"></div>
+                    <span class="gallery-item-emoji">🥧</span>
+                    <div class="gallery-item-overlay">
+                        <span>Nos tourtes</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-1">
+                    <div class="gallery-item-bg gallery-color-4"></div>
+                    <span class="gallery-item-emoji">🍰</span>
+                    <div class="gallery-item-overlay">
+                        <span>Nos desserts</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-2">
+                    <div class="gallery-item-bg gallery-color-5"></div>
+                    <span class="gallery-item-emoji">🌱</span>
+                    <div class="gallery-item-overlay">
+                        <span>Produits frais</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAITEUR / EVENTS -->
+    <section class="events" id="traiteur">
+        <div class="container">
+            <div class="events-grid">
+                <div class="events-visual reveal">
+                    <div class="events-visual-box">
+                        <div class="visual-text">
+                            <span class="big-emoji">🎉</span>
+                            <p>Traiteur &amp; Événements</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="events-content">
+                    <div class="section-label reveal">Service Traiteur</div>
+                    <div class="section-divider reveal"></div>
+                    <h2 class="section-title reveal">Vos événements,<br>notre <em>cuisine</em></h2>
+                    <p class="reveal" style="color: var(--color-charcoal-light); line-height: 1.8; margin-bottom: 1rem;">Le week-end, la Cantine Populaire se transforme. Émilie et Augustin mettent leur savoir-faire au service de vos moments importants.</p>
+
+                    <div class="events-list">
+                        <div class="events-list-item reveal">
+                            <span class="events-list-num">01</span>
+                            <div>
+                                <h4>Privatisation du restaurant</h4>
+                                <p>Anniversaires, fêtes de famille, réunions d'équipe... Profitez du lieu pour un moment convivial et sur-mesure jusqu'à 40 personnes.</p>
+                            </div>
+                        </div>
+                        <div class="events-list-item reveal reveal-delay-1">
+                            <span class="events-list-num">02</span>
+                            <div>
+                                <h4>Traiteur sur mesure</h4>
+                                <p>Buffets, cocktails, repas assis. Des menus personnalisés avec la même exigence que notre cuisine quotidienne : frais, maison, savoureux.</p>
+                            </div>
+                        </div>
+                        <div class="events-list-item reveal reveal-delay-2">
+                            <span class="events-list-num">03</span>
+                            <div>
+                                <h4>Événements d'entreprise</h4>
+                                <p>Déjeuners d'affaires, team building, séminaires. Une cuisine qui fédère, dans un cadre chaleureux et accessible.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="avis">
+        <div class="container">
+            <div class="testimonials-header">
+                <div class="section-label reveal">Ils en Parlent</div>
+                <div class="section-divider reveal"></div>
+                <h2 class="section-title reveal">Ce que nos clients <em>disent de nous</em></h2>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <blockquote>« Délicieux, chaleureux, une cuisine douce, simple et goûtue, une déco charmante et conviviale. Merci Émilie et Augustin ! »</blockquote>
+                    <div class="testimonial-author">Client fidèle</div>
+                    <div class="testimonial-source">Google &mdash; 4.8/5</div>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <blockquote>« Enfin un endroit où je sais que tout est fait maison, avec des produits frais, de qualité et de saison. Toujours aussi chaleureux ! »</blockquote>
+                    <div class="testimonial-author">Habitué du quartier</div>
+                    <div class="testimonial-source">Google &mdash; 4.8/5</div>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <blockquote>« On a privatisé le lieu pour un anniversaire de 40 personnes. Bœuf bourguignon, gratin dauphinois, desserts... C'était juste parfait ! »</blockquote>
+                    <div class="testimonial-author">Événement privé</div>
+                    <div class="testimonial-source">Tripadvisor &mdash; 4.5/5</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <section class="instagram" id="instagram">
+        <div class="section-label reveal">Suivez-Nous</div>
+        <div class="section-divider reveal"></div>
+        <h2 class="section-title reveal" style="color: var(--color-white);">Retrouvez-nous sur <em>Instagram</em></h2>
+        <a href="https://instagram.com/cantinepopulaire" target="_blank" rel="noopener" class="instagram-handle reveal reveal-delay-1">@cantinepopulaire</a>
+        <div class="instagram-grid reveal reveal-delay-2">
+            <div class="instagram-item"><div class="instagram-item-bg ig-color-1"></div></div>
+            <div class="instagram-item"><div class="instagram-item-bg ig-color-2"></div></div>
+            <div class="instagram-item"><div class="instagram-item-bg ig-color-3"></div></div>
+            <div class="instagram-item"><div class="instagram-item-bg ig-color-4"></div></div>
+            <div class="instagram-item"><div class="instagram-item-bg ig-color-5"></div></div>
+            <div class="instagram-item"><div class="instagram-item-bg ig-color-6"></div></div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="section-label reveal">Nous Trouver</div>
+                    <div class="section-divider reveal"></div>
+                    <h2 class="section-title reveal">Venez nous <em>rendre visite</em></h2>
+
+                    <h3 class="reveal">Adresse</h3>
+                    <p class="reveal">21 Rue Henri Barbusse<br>92110 Clichy<br><small style="color: var(--color-warm-gray);">À deux pas de la gare Clichy-Levallois</small></p>
+
+                    <h3 class="reveal">Téléphone</h3>
+                    <p class="reveal"><a href="tel:+33147393839">01 47 39 38 39</a></p>
+
+                    <h3 class="reveal">Horaires</h3>
+                    <div class="contact-hours reveal">
+                        <div class="contact-hours-row">
+                            <span class="day">Lundi</span>
+                            <span class="time">12h00 — 14h30</span>
+                        </div>
+                        <div class="contact-hours-row">
+                            <span class="day">Mardi</span>
+                            <span class="time">12h00 — 14h30</span>
+                        </div>
+                        <div class="contact-hours-row">
+                            <span class="day">Mercredi</span>
+                            <span class="time">12h00 — 14h30</span>
+                        </div>
+                        <div class="contact-hours-row">
+                            <span class="day">Jeudi</span>
+                            <span class="time">12h00 — 14h30</span>
+                        </div>
+                        <div class="contact-hours-row">
+                            <span class="day">Vendredi</span>
+                            <span class="time">12h00 — 14h30</span>
+                        </div>
+                        <div class="contact-hours-row">
+                            <span class="day">Sam — Dim</span>
+                            <span class="time">Traiteur &amp; Événements</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-map reveal">
+                    <div class="contact-map-content">
+                        <span class="pin">📍</span>
+                        <p>Cantine Populaire</p>
+                        <p class="address">21 Rue Henri Barbusse, 92110 Clichy</p>
+                        <a href="https://maps.google.com/?q=21+Rue+Henri+Barbusse+92110+Clichy" target="_blank" rel="noopener" class="contact-map-btn">
+                            Ouvrir dans Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">Cantine Populaire</div>
+                    <p>Cuisine familiale 100% fait maison avec amour depuis 2018. Émilie &amp; Augustin vous accueillent du lundi au vendredi pour le déjeuner.</p>
+                    <div class="footer-social">
+                        <a href="https://instagram.com/cantinepopulaire" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="https://facebook.com/cantinepopulaireparis" target="_blank" rel="noopener" aria-label="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Navigation</h4>
+                    <div class="footer-links">
+                        <a href="#histoire">Notre Histoire</a>
+                        <a href="#carte">La Carte</a>
+                        <a href="#galerie">Galerie</a>
+                        <a href="#traiteur">Traiteur</a>
+                        <a href="#avis">Avis</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Infos Pratiques</h4>
+                    <div class="footer-links">
+                        <a href="tel:+33147393839">01 47 39 38 39</a>
+                        <a href="#">21 Rue Henri Barbusse</a>
+                        <a href="#">92110 Clichy</a>
+                        <a href="#">Lun-Ven : 12h-14h30</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 Cantine Populaire. Tous droits réservés.</span>
+                <span>Fait avec ❤️ par Émilie &amp; Augustin</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ============================================
+        // LOADER
+        // ============================================
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // ============================================
+        // NAVIGATION
+        // ============================================
+        const nav = document.getElementById('nav');
+        const navBurger = document.getElementById('navBurger');
+        const navLinks = document.getElementById('navLinks');
+
+        // Scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu
+        navBurger.addEventListener('click', () => {
+            navBurger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navBurger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // ============================================
+        // SCROLL REVEAL
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ============================================
+        // SMOOTH SCROLL
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ============================================
+        // PARALLAX HERO (subtle)
+        // ============================================
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
+            }
+        });
+
+        // ============================================
+        // ACTIVE NAV LINK HIGHLIGHT
+        // ============================================
+        const sections = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.pageYOffset + 150;
+
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const height = section.offsetHeight;
+                const id = section.getAttribute('id');
+
+                if (scrollPos >= top && scrollPos < top + height) {
+                    navLinks.querySelectorAll('a').forEach(link => {
+                        link.style.opacity = '0.6';
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.style.opacity = '1';
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
