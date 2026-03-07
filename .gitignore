@@ -1,0 +1,9 @@
+# Google OAuth secrets
+credentials.json
+token.json
+
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
